@@ -3,13 +3,13 @@ import os
 import time
 from codegen import AnimationGenerator
 from manim_runner import run_manim
-from retriever import handle_query
+from retriever import handle_query,handle_animation_query
 
 # Initialize both tools
 
 
 # Set Streamlit page config
-st.set_page_config(page_title="Study & Animate 🤖🎓", page_icon="🧠")
+st.set_page_config(page_title="MentraX AI🎓", page_icon="🧠")
 st.title("🧠DeepMentor")
 
 # Session state for chat messages
@@ -36,7 +36,8 @@ if user_input:
     with st.chat_message("assistant"):
         studybot_response = handle_query(user_input, session_id="streamlit_session")
         st.markdown(studybot_response,unsafe_allow_html=True)
-
+        animation_response = handle_animation_query(user_input,session_id ="streamlit_session")
+        
     # Save bot response
     st.session_state.messages.append({"role": "assistant", "content": studybot_response})
     animation_generator = AnimationGenerator(api_key=os.environ.get("GROQ_API_KEY"))
@@ -51,7 +52,7 @@ if user_input:
     if studybot_response and "No valid answer" not in studybot_response:
         with st.chat_message("assistant"):
             with st.spinner("🎬 Generating animation plan and code..."):
-                animation_plan, final_code = animation_generator.generate_final_manim_code(studybot_response)
+                animation_plan, final_code = animation_generator.generate_final_manim_code(animation_response)
             print(animation_plan)
             print(final_code)
 
