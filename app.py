@@ -35,7 +35,7 @@ if user_input:
         
     with st.chat_message("assistant"):
         studybot_response = handle_query(user_input, session_id="streamlit_session")
-        st.markdown(studybot_response)
+        st.markdown(studybot_response,unsafe_allow_html=True)
 
     # Save bot response
     st.session_state.messages.append({"role": "assistant", "content": studybot_response})
