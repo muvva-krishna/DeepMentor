@@ -16,11 +16,11 @@ openai_api_key = os.getenv("openai_api")
 
 pc = Pinecone(api_key=pinecone_api_key)
 
-index_name = "manimtest"
+index_name = "manimdemo"
 
-pcindex = pc.Index(name = index_name,host="https://manimtest-vd1mwjl.svc.aped-4627-b74a.pinecone.io")
+pcindex = pc.Index(name = index_name,host="https://manimdemo-vd1mwjl.svc.aped-4627-b74a.pinecone.io")
 
-embeddings = OpenAIEmbeddings(api_key=openai_api_key,model = "text-embedding-3-small")
+embeddings = OpenAIEmbeddings(api_key=openai_api_key,model = "text-embedding-3-large")
 vectorstore = PineconeVectorStore(index= pcindex,embedding= embeddings)
 
 text_splitter = RecursiveCharacterTextSplitter()
