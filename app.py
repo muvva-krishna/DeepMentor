@@ -52,12 +52,8 @@ if user_input:
         with st.chat_message("assistant"):
             with st.spinner("🎬 Generating animation plan and code..."):
                 animation_plan, final_code = animation_generator.generate_final_manim_code(studybot_response)
-
-            st.subheader("🪄 Animation Plan")
-            st.markdown(animation_plan)
-
-            st.subheader("📜 Manim Code")
-            st.code(final_code, language="python")
+            print(animation_plan)
+            print(final_code)
 
         # Render video
         with st.chat_message("assistant"):
