@@ -5,9 +5,10 @@ import pdfplumber
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-pdf_paths = ["dataset\\fundamentals-of-signals-and-systems-1-60.pdf",
-             "dataset\\Linear_Systems_and_Signals_2nd_Edition__BP_Lathi-173-230.pdf"
-             ]
+pdf_paths = ["dataset\\probability.pdf",
+            "dataset\\Ch-16_Probability.pdf",
+             
+            ]
 
 def extract_content_pdfplumber(pdf_paths): 
     all_content = []
