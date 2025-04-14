@@ -14,7 +14,7 @@ from langchain_core.prompts import MessagesPlaceholder
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
-from asset import teaching_prompt
+from asset import teaching_prompt,teaching_prompt_new
 
 load_dotenv()
 pinecone_api_key = os.getenv("pinecone_api")
@@ -43,7 +43,7 @@ output_parser = StrOutputParser()
 
 # System prompt for guiding the responses
 system_prompt = teaching_prompt
-
+plan_generation_prompt = teaching_prompt_new
 # Setup for contextualizing question prompts
 contextualize_q_system_prompt = (
     "Given a chat history and the latest user question which might reference context in the chat history, "
@@ -106,8 +106,16 @@ def handle_query(input_prompt, session_id):
     # Print the assistant's response
     return response["answer"]
 
+def handle_animation_query(input_prompt, session_id):
+    animation_response = conversational_rag_chain.invoke(
+        {"input" : input_prompt},
+        {"configurable" : {"session_id":session_id}}
+    )
+    return animation_response["answer"]
+    
 # Continuous interaction loop
 if __name__ == "__main__":
+    
     session_id = "unique_session_identifier"
     while True:
         user_input = input("You| ")
