@@ -10,7 +10,7 @@ from retriever import handle_query
 
 # Set Streamlit page config
 st.set_page_config(page_title="Study & Animate 🤖🎓", page_icon="🧠")
-st.title("🧠📽️ Study & Animate Assistant")
+st.title("🧠DeepMentor")
 
 # Session state for chat messages
 if "messages" not in st.session_state:
