@@ -17,13 +17,13 @@ from langchain_community.chat_message_histories import ChatMessageHistory
 from asset import teaching_prompt,teaching_prompt_new
 
 load_dotenv()
-pinecone_api_key = os.getenv("pinecone_api")
-openai_api_key = os.getenv("openai_api")
+pinecone_api_key = st.secrets["pinecone_api"]
+openai_api_key = st.secrets["openai_api"]
 
 os.environ["OPENAI_API_KEY"] = openai_api_key
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
-os.environ["LANGCHAIN_API_KEY"] = os.getenv("langsmith_api_key")
+os.environ["LANGCHAIN_API_KEY"] = st.secrets["langsmith_api_key"]
 os.environ["LANGCHAIN_PROJECT"] = "rag"
 
 # Initialize Pinecone and set up Pinecone VectorStore retriever
