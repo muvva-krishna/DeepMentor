@@ -1,35 +1,37 @@
-# Use a lightweight Python base image
+# Use a slim base image with Python 3.10
 FROM python:3.10-slim
 
-# Set environment variables to avoid prompts during installs
+# Prevent interactive prompts during install
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install system dependencies including LaTeX and FFmpeg
+# Install system-level dependencies
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     texlive-full \
-    manim \
     git \
     curl \
     build-essential \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy your app files into the container
+# Copy your app files into the image
 COPY . .
 
-# Install Python dependencies
+# Upgrade pip and install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Expose port Streamlit runs on
+# Install Manim via pip
+RUN pip install manim
+
+# Make sure 'manim' is accessible (check where pip installs it)
+ENV PATH="/root/.local/bin:$PATH"
+
+# Expose Streamlit port
 EXPOSE 8501
 
-# Set Streamlit environment variable to allow custom ports
-ENV STREAMLIT_SERVER_PORT=8501
-
-# Run Streamlit app
+# Run the Streamlit app
 CMD ["streamlit", "run", "app.py"]
