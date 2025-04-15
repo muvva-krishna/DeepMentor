@@ -8,3 +8,4 @@ pdfplumber
 pinecone
 langchain-community
 langchain_pinecone
+manim
