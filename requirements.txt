@@ -7,3 +7,4 @@ langchain_openai
 pdfplumber
 pinecone
 langchain-community
+langchain_pinecone
