@@ -1,8 +1,9 @@
 FROM python:3.12-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PATH="/root/.local/bin:$PATH"
+ENV PATH="/root/.local/bin:/usr/local/bin:$PATH"
 
+# Install system dependencies including FFmpeg, LaTeX, and others
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     texlive-latex-base \
@@ -15,6 +16,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 COPY . .
 
+# Install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install manim
