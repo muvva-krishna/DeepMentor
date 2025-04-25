@@ -11,14 +11,14 @@ from pinecone import ServerlessSpec
 from main import create_documents_with_labels
 
 load_dotenv()
-pinecone_api_key = st.secrets["pinecone_api"]
-openai_api_key = st.secrets["openai_api"]
+pinecone_api_key = ""
+openai_api_key = ""
 
 pc = Pinecone(api_key=pinecone_api_key)
 
-index_name = "manimdemo"
+index_name = "test2"
 
-pcindex = pc.Index(name = index_name,host="https://manimdemo-vd1mwjl.svc.aped-4627-b74a.pinecone.io")
+pcindex = pc.Index(name = index_name,host="https://test2-vd1mwjl.svc.aped-4627-b74a.pinecone.io")
 
 embeddings = OpenAIEmbeddings(api_key=openai_api_key,model = "text-embedding-3-large")
 vectorstore = PineconeVectorStore(index= pcindex,embedding= embeddings)
@@ -45,11 +45,11 @@ def store_embeddings(documents, embeddings, batch_size=100):
 
 if __name__ == "__main__":
     try:
-        labeled_chunks = create_documents_with_labels()
-        chunk_documents = labeled_chunks  # Use directly
+        pdf_paths = ["dataset/probability.pdf"]
+        labeled_chunks = create_documents_with_labels(pdf_paths)
+        chunk_documents = labeled_chunks
         chunk_embeddings = create_embeddings(chunk_documents)
         store_embeddings(chunk_documents, chunk_embeddings, batch_size=100)
         print("All documents stored in Pinecone with labels.")
     except Exception as e:
         print(f"❌ Error while storing documents: {e}")
-
