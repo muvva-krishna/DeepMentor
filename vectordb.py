@@ -11,14 +11,15 @@ from pinecone import ServerlessSpec
 from main import create_documents_with_labels
 
 load_dotenv()
-pinecone_api_key = ""
-openai_api_key = ""
+#change the api key for pinecone, index_name, and host
+pinecone_api_key = os.getenv("PINECONE_API_KEY")
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
 pc = Pinecone(api_key=pinecone_api_key)
 
-index_name = "test2"
+index_name = "test" #indexname
 
-pcindex = pc.Index(name = index_name,host="https://test2-vd1mwjl.svc.aped-4627-b74a.pinecone.io")
+pcindex = pc.Index(name = index_name,host="https://test-a604i2v.svc.aped-4627-b74a.pinecone.io")# change the host name
 
 embeddings = OpenAIEmbeddings(api_key=openai_api_key,model = "text-embedding-3-large")
 vectorstore = PineconeVectorStore(index= pcindex,embedding= embeddings)
