@@ -18,7 +18,8 @@ from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from asset import system_prompt  # assuming you have this prompt file
 load_dotenv()
-api_key = ""
+
+api_key = "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"
 client = OpenAI(api_key=api_key)
 
 # New technique: Convert PDF pages to images
@@ -34,12 +35,12 @@ def get_img_uri(img):
 def analyze_image(data_uri):
     try:
         response = client.chat.completions.create(
-            model="gpt-4o-mini-2024-07-18",
+            model="gpt-4.1-mini-2025-04-14",
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": [{"type": "image_url", "image_url": {"url": data_uri}}]},
             ],
-            max_tokens=2000,
+            max_tokens=1000,
             temperature=0.1,
             top_p=0.1
         )
