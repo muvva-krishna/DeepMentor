@@ -7,5 +7,6 @@ langchain_openai
 pdfplumber
 pinecone
 langchain-community
-langchain_pinecone
 manim
+tqdm
+pdf2image
