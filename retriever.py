@@ -17,19 +17,18 @@ from langchain_community.chat_message_histories import ChatMessageHistory
 from asset import teaching_prompt,teaching_prompt_new
 
 load_dotenv()
-pinecone_api_key = st.secrets["pinecone_api"]
-openai_api_key = st.secrets["openai_api"]
+pinecone_api_key = os.getenv("PINECONE_API_KEY")
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
-os.environ["OPENAI_API_KEY"] = openai_api_key
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
-os.environ["LANGCHAIN_API_KEY"] = st.secrets["langsmith_api_key"]
+os.environ["LANGCHAIN_API_KEY"] = os.getenv("langsmith_api_key")
 os.environ["LANGCHAIN_PROJECT"] = "rag"
 
 # Initialize Pinecone and set up Pinecone VectorStore retriever
 pc = Pinecone(api_key=pinecone_api_key)
-index_name = "manimdemo"
-pcindex = pc.Index(name=index_name, host="https://manimdemo-vd1mwjl.svc.aped-4627-b74a.pinecone.io")
+index_name = "test"
+pcindex = pc.Index(name=index_name, host="https://test-a604i2v.svc.aped-4627-b74a.pinecone.io")
 
 # Create the OpenAI embedding and vector store retriever
 embeddings = OpenAIEmbeddings(api_key=openai_api_key, model="text-embedding-3-large")
@@ -37,13 +36,14 @@ vectorstore = PineconeVectorStore(index=pcindex, embedding=embeddings)
 retriever = vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
 # Initialize the language model
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
+llm = ChatOpenAI(api_key=os.getenv("OPENAI_API_KEY"),model="gpt-4o-mini", temperature=0.2)
 llm_adv = ChatOpenAI(model="gpt-4o", temperature = 0.2)
 output_parser = StrOutputParser()
 
 # System prompt for guiding the responses
 system_prompt = teaching_prompt
 plan_generation_prompt = teaching_prompt_new
+
 # Setup for contextualizing question prompts
 contextualize_q_system_prompt = (
     "Given a chat history and the latest user question which might reference context in the chat history, "
