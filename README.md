@@ -49,7 +49,8 @@ The application is built on a modular architecture that combines several key tec
 
     ```bash
     git clone https://github.com/muvva-krishna/manim.git
-    cd manim
+    cd DeepMentor
+
     ```
 
 2.  **Install system dependencies:**
