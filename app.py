@@ -9,7 +9,7 @@ from retriever import handle_query,handle_animation_query
 
 
 # Set Streamlit page config
-st.set_page_config(page_title="MentraX AI🎓", page_icon="🧠")
+st.set_page_config(page_title="DeepMentor🎓", page_icon="🧠")
 st.title("🧠DeepMentor")
 
 # Session state for chat messages
