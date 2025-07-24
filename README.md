@@ -1,4 +1,9 @@
-https://github.com/user-attachments/assets/e7472756-08db-4b47-b66f-4426b10a0a74
+
+[MentraX AI🎓 - Google Chrome 2025-04-15 04-28-51.zip](https://github.com/user-attachments/files/21419135/MentraX.AI.-.Google.Chrome.2025-04-15.04-28-51.zip)
+
+
+https://github.com/user-attachments/assets/0394b3fd-cc96-4a14-a33c-61b06021f16c
+
 # DeepMentor 🧠
 
 DeepMentor is a powerful, interactive learning platform designed to help students understand complex mathematical concepts. It combines a knowledgeable AI tutor with an automated animation engine to provide a rich, multi-modal learning experience.
