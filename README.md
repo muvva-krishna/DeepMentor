@@ -1,6 +1,6 @@
 # DeepMentor 🧠
 
-MentraX AI is a powerful, interactive learning platform designed to help students understand complex mathematical concepts. It combines a knowledgeable AI tutor with an automated animation engine to provide a rich, multi-modal learning experience.
+DeepMentor is a powerful, interactive learning platform designed to help students understand complex mathematical concepts. It combines a knowledgeable AI tutor with an automated animation engine to provide a rich, multi-modal learning experience.
 
 ## Features
 
