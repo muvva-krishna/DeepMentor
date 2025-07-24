@@ -1,8 +1,5 @@
 
-[MentraX AI🎓 - Google Chrome 2025-04-15 04-28-51.zip](https://github.com/user-attachments/files/21419135/MentraX.AI.-.Google.Chrome.2025-04-15.04-28-51.zip)
-
-
-https://github.com/user-attachments/assets/0394b3fd-cc96-4a14-a33c-61b06021f16c
+[DeepMentor_demo.zip](https://github.com/user-attachments/files/21419264/DeepMentor_demo.zip)
 
 # DeepMentor 🧠
 
